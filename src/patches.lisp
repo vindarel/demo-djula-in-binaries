@@ -29,25 +29,4 @@
 
 (setf djula::*current-store* (make-instance 'memory-template-store))
 
-
-;; Now let's grab all our templates defined in the .asd
-;; and compile them with Djula.
-
-(defun get-component-templates (sys component)
-  "sys: system name (string)
-   component: system-component name (string)"
-  (let* ((sys (asdf:find-system sys))
-         (module (find component (asdf:component-children sys) :key #'asdf:component-name :test #'equal))
-         (alltemplates (remove-if-not (lambda (x) (typep x 'asdf:static-file))
-                                      (asdf:module-components module))))
-
-    (mapcar (lambda (it) (asdf:component-pathname it))
-            alltemplates)))
-
-(uiop:format! t "~&Let's compile our templates. Djula's *current-store* of type: ~S~&" (type-of djula::*current-store*))
-
-(let* ((paths (get-component-templates "demo-djula-in-binaries" "src/templates")))
-  (loop for path in paths
-     do (uiop:format! t "~&Compiling template file ~a…" path)
-       (djula:compile-template* path))
-  (values t :all-done))
+;; We use all of this in app.lisp
