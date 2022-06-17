@@ -40,8 +40,8 @@
 
 ;; Deploy doesn't find libcrypto on my system.
 ;; We won't ship it but rely on its presence on the target OS.
-;; #+linux (deploy:define-library cl+ssl::libssl :dont-deploy T)
-;; #+linux (deploy:define-library cl+ssl::libcrypto :dont-deploy T)
+#+linux (deploy:define-library cl+ssl::libssl :dont-deploy T)
+#+linux (deploy:define-library cl+ssl::libcrypto :dont-deploy T)
 
 ;; Osicat error with non-Deploy binary.
 ;; This is probably not needed but handled by Deploy:
