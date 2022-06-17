@@ -44,6 +44,8 @@
     (mapcar (lambda (it) (asdf:component-pathname it))
             alltemplates)))
 
+(uiop:format! t "~&Let's compile our templates. Djula's *current-store* of type: ~S~&" (type-of djula::*current-store*))
+
 (let* ((paths (get-component-templates "demo-djula-in-binaries" "src/templates")))
   (loop for path in paths
      do (uiop:format! t "~&Compiling template file ~a…" path)
