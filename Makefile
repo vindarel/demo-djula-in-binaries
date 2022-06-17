@@ -10,4 +10,4 @@ build:
 run:
 	$(LISP) --load demo-djula-in-binaries.asd \
 	     	--eval '(ql:quickload :demo-djula-in-binaries)' \
-		--load src/app.lisp
+		--eval '(demo-djula-in-binaries::main)'

@@ -3,12 +3,16 @@ Can we embed Djula templates in a self-contained binary?
 
 https://github.com/mmontone/djula/issues/79
 
-see pathes.lisp
+Eval patches.lisp,
 
-eval the last snippet that tries to compile all templates, or simply run
+then in app.lisp eval the snippet that tries to compile all templates, or simply run
 
     make run
 
-The template admin.html "extends" base.html.
+this tries to compile them with the new method and exposes the Hunchentoot server on port 6789.
+
+Access http://localhost:6789/ and http://localhost:6789/admin
+
+The template admin.html "extends" base.html (Djula initial difficulty).
 
 Status: progress is made, stay tuned…

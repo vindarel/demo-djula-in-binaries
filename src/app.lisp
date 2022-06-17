@@ -44,25 +44,29 @@
 
 (defvar *my-acceptor* nil)
 
-(defparameter *port* 4567)
+(defparameter *port* 6789)
 
 
-(uiop:format! t "-------- create hunchentoot acceptor… ~&")
-(setf *my-acceptor* (make-instance 'hunchentoot:easy-acceptor :port *port*
-                                   :document-root #p"public/"))
+(defun main ()
+  (uiop:format! t "-------- create hunchentoot acceptor… ~&")
+  (setf *my-acceptor* (make-instance 'hunchentoot:easy-acceptor :port *port*
+                                     :document-root #p"public/"))
 
-(uiop:format! t "-------- start app on port ~a… --------------~&" *port*)
-(hunchentoot:start *my-acceptor*)
+  (uiop:format! t "-------- start app on port ~a… --------------~&" *port*)
+  (hunchentoot:start *my-acceptor*)
 
-(hunchentoot:define-easy-handler (route-base :uri "/") ()
-  (djula:render-template* +base.html+ nil))
+  (hunchentoot:define-easy-handler (route-base :uri "/") ()
+    (djula:render-template* +base.html+ nil))
 
-(hunchentoot:define-easy-handler (route-admin :uri "/admin") ()
-  (djula:render-template* +admin.html+ nil))
+  (hunchentoot:define-easy-handler (route-admin :uri "/admin") ()
+    (djula:render-template* +admin.html+ nil)))
+
+#+(or)
+(main)
 
 
-;; (uiop:format! t "-------- put the server thread on the foreground~&")
 ;; ;; (for a binary or Systemd running from sources)
+;; (uiop:format! t "-------- put the server thread on the foreground~&")
 ;; (bt:join-thread (find-if (lambda (th)
 ;;                            (search "hunchentoot" (bt:thread-name th)))
 ;;                          (bt:all-threads)))
