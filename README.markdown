@@ -5,12 +5,14 @@ https://github.com/mmontone/djula/issues/79
 
 see pathes.lisp
 
-eval the last snippet that tries to compile all templates.
+eval the last snippet that tries to compile all templates, or simply run
 
-erronous output is:
+    make run
+
+The erronous output is:
 
 ```
-Compiling template file /home/vince/bacasable/bacalisp/demo-djula-in-binaries/src/templates/base.html…
+Compiling template file /home/vince/bacasable/bacalisp/demo-djula-in-binaries/src/templates/base.html… (OK: the first template was compiled)
 Compiling template file /home/vince/bacasable/bacalisp/demo-djula-in-binaries/src/templates/admin.html…; Evaluation aborted on #<TEMPLATE-ERROR "{# Error: There was an error processing the token (TAG EXTENDS base.html) : Template base.html not found #}" {1002B84513}>.
 
 

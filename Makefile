@@ -8,4 +8,6 @@ build:
 	     --eval '(asdf:make :demo-djula-in-binaries)'
 
 run:
-	rlwrap $(LISP) --load src/app.lisp
+	$(LISP) --load demo-djula-in-binaries.asd \
+	     	--eval '(ql:quickload :demo-djula-in-binaries)' \
+		--load src/app.lisp
