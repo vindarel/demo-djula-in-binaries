@@ -29,4 +29,8 @@
 
 (setf djula::*current-store* (make-instance 'memory-template-store))
 
+;; Don't try to recompile templates, don't access templates attributes (write-date)
+;; that don't exist with this memory store.
+(push :djula-prod *features*)
+
 ;; We use all of this in app.lisp
