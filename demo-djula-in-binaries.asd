@@ -25,7 +25,7 @@
   ;; :build-operation "program-op"
   :build-operation "deploy-op" ;; with Deploy
   :build-pathname "demo-djula-in-binaries"
-  :entry-point "demo-djula-in-binaries::main"
+  :entry-point "demo-djula-in-binaries::run"
 
   :description "Can we embed Djula templates in a self-contained binary?"
   ;; :long-description

@@ -64,9 +64,10 @@
 #+(or)
 (main)
 
-
-;; ;; (for a binary or Systemd running from sources)
-;; (uiop:format! t "-------- put the server thread on the foreground~&")
-;; (bt:join-thread (find-if (lambda (th)
-;;                            (search "hunchentoot" (bt:thread-name th)))
-;;                          (bt:all-threads)))
+;; For a binary or Systemd running from sources.
+(defun run ()
+  (main)
+  (uiop:format! t "~&-------- Putting the server thread on the foreground~&")
+  (bt:join-thread (find-if (lambda (th)
+                             (search "hunchentoot" (bt:thread-name th)))
+                           (bt:all-threads))))
