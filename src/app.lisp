@@ -21,7 +21,7 @@
 
 ;; Before going further, let's initialize Djula.
 (djula:add-template-directory (asdf:system-relative-pathname "demo-djula-in-binaries"
-                                                             "src/templates/"))
+                                                             "src/templates/")) ;; with a trailing /
 
 ;; Declare our templates.
 (defparameter +base.html+ (djula:compile-template* "base.html"))
