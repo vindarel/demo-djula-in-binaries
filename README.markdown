@@ -16,3 +16,7 @@ Access http://localhost:6789/ and http://localhost:6789/admin
 The template admin.html "extends" base.html (Djula initial difficulty).
 
 Status: progress is made, stay tuned…
+
+**Confirmed**! \o/ 🎉
+
+Next: merge in Djula…
