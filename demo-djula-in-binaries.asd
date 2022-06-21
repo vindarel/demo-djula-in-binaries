@@ -10,8 +10,7 @@
                )
   :components ((:module "src"
                         :components
-                        ((:file "patches")
-                         (:file "app")))
+                        ((:file "app")))
                (:module "src/templates"
                         :components
                         ;; Order is important: the ones that extend admin.html

@@ -5,38 +5,21 @@
 
 (in-package :demo-djula-in-binaries)
 
-;; Let's grab all our templates defined in the .asd
-;; and compile them with Djula.
-
-(defun get-component-templates (sys component)
-  "sys: system name (string)
-   component: system-component name (string)"
-  (let* ((sys (asdf:find-system sys))
-         (module (find component (asdf:component-children sys) :key #'asdf:component-name :test #'equal))
-         (alltemplates (remove-if-not (lambda (x) (typep x 'asdf:static-file))
-                                      (asdf:module-components module))))
-
-    (mapcar (lambda (it) (asdf:component-pathname it))
-            alltemplates)))
-
 ;; Before going further, let's initialize Djula.
-(djula:add-template-directory (asdf:system-relative-pathname "demo-djula-in-binaries"
-                                                             "src/templates/")) ;; with a trailing /
 
-;; Declare our templates.
-(defparameter +base.html+ (djula:compile-template* "base.html"))
-(defparameter +admin.html+ (djula:compile-template* "admin.html"))
+(setf djula:*current-store* (make-instance 'djula:memory-template-store
+					   :search-path (list (asdf:system-relative-pathname "demo-djula-in-binaries"
+                                                             "src/templates/")))
+      djula:*recompile-templates-on-change* nil)
 
 ;; Now:
 (uiop:format! t "~&Let's compile our templates. Djula's *current-store* of type: ~S~&" (type-of djula::*current-store*))
 
-(let* ((paths (get-component-templates "demo-djula-in-binaries" "src/templates")))
-  (loop for path in paths
-     do (uiop:format! t "~&Compiling template file ~a…" path)
-       (djula:compile-template* path))
-  (values t :all-done))
+(mapcar #'djula:compile-template* (djula:list-asdf-system-templates :demo-djula-in-binaries "src/templates"))
 
-;; If we got past here, great! Let's access the templates.
+;; Declare our templates.
+(defparameter +base.html+ (djula:compile-template* "base.html"))
+(defparameter +admin.html+ (djula:compile-template* "admin.html"))
 
 ;;;
 ;;; Start server.
