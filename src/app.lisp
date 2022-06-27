@@ -15,6 +15,7 @@
 ;; Now:
 (uiop:format! t "~&Let's compile our templates. Djula's *current-store* of type: ~S~&" (type-of djula::*current-store*))
 
+;; Let's compile all templates into the memory store.
 (mapcar #'djula:compile-template* (djula:list-asdf-system-templates :demo-djula-in-binaries "src/templates"))
 
 ;; Declare our templates.
